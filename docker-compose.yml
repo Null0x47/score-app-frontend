@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  score-app-frontend:
+    build: .
+    restart: unless-stopped
+    ports:
+      - 9000:80

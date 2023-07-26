@@ -1,0 +1,60 @@
+// app global css in SCSS form
+
+body {
+    background-color: lighten(lightgray, 14%);
+    font-family: 'Merriweather', serif;
+}
+
+.q-toolbar {
+    min-height: 65px;
+
+    .q-avatar {
+        width: auto;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.q-date {
+    width: 100%;
+}
+
+.sa-icon-adjusted {
+    margin-top: -8px;
+}
+
+.sa-delete-uitslag {
+    margin-bottom: 5px;
+}
+
+.sa-highest-score {
+    color: red;
+}
+
+.sa-menu-item {
+    font-size: 20px !important;
+}
+
+.q-markup-table {
+    th {
+        font-weight: bold;
+        font-size: 14px;
+    }
+}
+
+.q-markup-table {
+    margin-bottom: 15px;
+}
+
+.sa-toolbar-title {
+    font-weight: bold;
+}
+
+.sa-column {
+    padding: 15px;
+}
+
+.q-btn {
+    margin-left: 5px;
+}

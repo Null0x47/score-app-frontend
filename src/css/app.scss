@@ -20,6 +20,23 @@ body {
     width: 100%;
 }
 
+.sa-scoreboard-title {
+    height: 100%;
+    width: 100%;
+    background-color: #e80414;
+    color: white;
+    margin-top: 100px;
+    padding: 25px 25px;
+}
+
+.sa-scoreboard {
+    padding-top: 350px;
+
+    td, th {
+        font-size: 20px !important;
+    }
+}
+
 .sa-icon-adjusted {
     margin-top: -8px;
 }

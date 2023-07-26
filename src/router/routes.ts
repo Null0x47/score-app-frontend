@@ -13,6 +13,11 @@ const routes: RouteRecordRaw[] = [
     children: [{ path: '', component: () => import('pages/UitslagenPage.vue') }],
   },
 
+  {
+    path: '/scorebord',
+    children: [{ path: '', component: () => import('pages/ScoreboardPage.vue') }],
+  },
+
 
   // Always leave this as last one,
   // but you can also remove it

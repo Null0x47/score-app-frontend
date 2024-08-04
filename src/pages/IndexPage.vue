@@ -7,9 +7,23 @@
         </q-card-section>
 
         <q-card-section class="q-pt-none">
-          <q-input outlined label="Tentnummer" v-model="addTentForm.tentnr.value" autofocus /><br>
-          <q-input outlined label="Tentchef" v-model="addTentForm.tentchef.value" /><br>
-          <q-input outlined type="textarea" label="Kampers" v-model="addTentForm.kampers.value" /><br>
+          <q-input
+            outlined
+            label="Tentnummer"
+            v-model="addTentForm.tentnr.value"
+            autofocus
+          /><br />
+          <q-input
+            outlined
+            label="Tentchef"
+            v-model="addTentForm.tentchef.value"
+          /><br />
+          <q-input
+            outlined
+            type="textarea"
+            label="Kampers"
+            v-model="addTentForm.kampers.value"
+          /><br />
         </q-card-section>
 
         <q-card-actions align="right" class="text-primary">
@@ -26,10 +40,28 @@
         </q-card-section>
 
         <q-card-section class="q-pt-none">
-          <q-input outlined label="Naam" v-model="addActiviteitForm.naam.value" autofocus /><br>
-          <q-select outlined v-model="addActiviteitForm.type.value" :options="typeOptions" label="Type" /><br>
-          <q-select outlined v-model="addActiviteitForm.dagdeel.value" :options="dagdeelOptions" label="Dagdeel" /><br>
-          <q-checkbox v-model="addActiviteitForm.themadag_onderdeel.value" label="Themadag onderdeel" />
+          <q-input
+            outlined
+            label="Naam"
+            v-model="addActiviteitForm.naam.value"
+            autofocus
+          /><br />
+          <q-select
+            outlined
+            v-model="addActiviteitForm.type.value"
+            :options="typeOptions"
+            label="Type"
+          /><br />
+          <q-select
+            outlined
+            v-model="addActiviteitForm.dagdeel.value"
+            :options="dagdeelOptions"
+            label="Dagdeel"
+          /><br />
+          <q-checkbox
+            v-model="addActiviteitForm.themadag_onderdeel.value"
+            label="Themadag onderdeel"
+          />
         </q-card-section>
 
         <q-card-actions align="right" class="text-primary">
@@ -46,12 +78,23 @@
         </q-card-section>
 
         <q-card-section class="q-pt-none">
-          Weet je zeker dat je <b>"tent {{ tentOmTeVerwijderen }}"</b> wilt verwijderen? Deze actie kan je niet terugdraaien!
+          Weet je zeker dat je <b>"tent {{ tentOmTeVerwijderen }}"</b> wilt
+          verwijderen? Deze actie kan je niet terugdraaien!
         </q-card-section>
 
         <q-card-actions align="right" class="text-primary">
-          <q-btn flat color="grey" label="Annuleren" @click="closeVerwijderTentDialog()" v-close-popup />
-          <q-btn flat label="Verwijderen" @click="removeTent(tentOmTeVerwijderen)" />
+          <q-btn
+            flat
+            color="grey"
+            label="Annuleren"
+            @click="closeVerwijderTentDialog()"
+            v-close-popup
+          />
+          <q-btn
+            flat
+            label="Verwijderen"
+            @click="removeTent(tentOmTeVerwijderen)"
+          />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -63,12 +106,24 @@
         </q-card-section>
 
         <q-card-section class="q-pt-none">
-          Weet je zeker dat je de activiteit <b>"{{ (activiteitOmTeVerwijderen as any).naam }}"</b> wilt verwijderen? Deze actie kan je niet terugdraaien!
+          Weet je zeker dat je de activiteit
+          <b>"{{ (activiteitOmTeVerwijderen as any).naam }}"</b> wilt
+          verwijderen? Deze actie kan je niet terugdraaien!
         </q-card-section>
 
         <q-card-actions align="right" class="text-primary">
-          <q-btn flat color="grey" label="Annuleren" @click="closeVerwijderActiviteitDialog()" v-close-popup />
-          <q-btn flat label="Verwijderen" @click="removeActiviteit(activiteitOmTeVerwijderen)" />
+          <q-btn
+            flat
+            color="grey"
+            label="Annuleren"
+            @click="closeVerwijderActiviteitDialog()"
+            v-close-popup
+          />
+          <q-btn
+            flat
+            label="Verwijderen"
+            @click="removeActiviteit(activiteitOmTeVerwijderen)"
+          />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -76,7 +131,8 @@
     <div class="q-pa-md">
       <div class="sa-column">
         <h4 class="text-bold">
-          <q-icon class="sa-icon-adjusted" name="sports_score" size="48px"/> Scores
+          <q-icon class="sa-icon-adjusted" name="sports_score" size="48px" />
+          Scores
         </h4>
         <q-card>
           <q-card-section>
@@ -84,7 +140,9 @@
               <q-item>
                 <q-item-section>
                   <q-item-label overline>Totaal</q-item-label>
-                  <q-item-label caption>Scores bijgehouden over de hele week</q-item-label>
+                  <q-item-label caption
+                    >Scores bijgehouden over de hele week</q-item-label
+                  >
                 </q-item-section>
               </q-item>
 
@@ -93,18 +151,22 @@
               <q-item v-for="tent in tenten" :key="`tent-${tent.id}-score`">
                 <q-item-section top avatar>
                   <q-avatar rounded>
-                    <img src="../assets/img/kamp.jpg">
+                    <img src="../assets/img/kamp.jpg" />
                   </q-avatar>
                 </q-item-section>
 
                 <q-item-section>
-                  <q-item-label>Tent {{ tent.tentnr }} ({{ tent.tentchef }})</q-item-label>
+                  <q-item-label
+                    >Tent {{ tent.tentnr }} ({{ tent.tentchef }})</q-item-label
+                  >
                   <q-item-label caption>{{ tent.kampers }}</q-item-label>
                 </q-item-section>
 
                 <q-item-section side top>
                   <template v-if="scores">
-                    <q-item-label caption><b>{{ getScore(tent.tentnr) }} punten</b></q-item-label>
+                    <q-item-label caption
+                      ><b>{{ getScore(tent.tentnr) }} punten</b></q-item-label
+                    >
                   </template>
                 </q-item-section>
               </q-item>
@@ -114,8 +176,14 @@
 
         <div>
           <h4 class="text-bold">
-            <q-icon class="sa-icon-adjusted" name="bungalow" size="48px"/>
-            Tenten <q-btn color="grey" round icon="add" @click="showAddTentForm = true" />
+            <q-icon class="sa-icon-adjusted" name="bungalow" size="48px" />
+            Tenten
+            <q-btn
+              color="grey"
+              round
+              icon="add"
+              @click="showAddTentForm = true"
+            />
           </h4>
         </div>
         <q-markup-table>
@@ -133,7 +201,13 @@
               <td class="text-left">{{ tent.tentchef }}</td>
               <td class="text-left">{{ tent.kampers }}</td>
               <td class="text-right">
-                <q-btn color="primary" round flat icon="delete" @click="openVerwijderTentDialog(tent.tentnr)" />
+                <q-btn
+                  color="primary"
+                  round
+                  flat
+                  icon="delete"
+                  @click="openVerwijderTentDialog(tent.tentnr)"
+                />
               </td>
             </tr>
           </tbody>
@@ -141,8 +215,14 @@
 
         <div>
           <h4 class="text-bold">
-            <q-icon class="sa-icon-adjusted" name="hiking" size="48px"/>
-            Activiteiten <q-btn color="grey" round icon="add" @click="showAddActiviteitForm = true" />
+            <q-icon class="sa-icon-adjusted" name="hiking" size="48px" />
+            Activiteiten
+            <q-btn
+              color="grey"
+              round
+              icon="add"
+              @click="showAddActiviteitForm = true"
+            />
           </h4>
         </div>
         <q-markup-table>
@@ -156,7 +236,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="activiteit in activiteiten" :key="`activiteit-${activiteit.id}`">
+            <tr
+              v-for="activiteit in activiteiten"
+              :key="`activiteit-${activiteit.id}`"
+            >
               <td class="text-left">{{ activiteit.naam }}</td>
               <td class="text-left">{{ activiteit.type }}</td>
               <td class="text-left">{{ activiteit.dagdeel }}</td>
@@ -164,12 +247,17 @@
                 <template v-if="activiteit.themadag_onderdeel == 0">
                   Nee
                 </template>
-                <template v-else>
-                  Ja
-                </template>
+                <template v-else> Ja </template>
               </td>
               <td class="text-right">
-                <q-btn color="primary" outline flat round icon="delete" @click="openVerwijderActiviteitDialog(activiteit)" />
+                <q-btn
+                  color="primary"
+                  outline
+                  flat
+                  round
+                  icon="delete"
+                  @click="openVerwijderActiviteitDialog(activiteit)"
+                />
               </td>
             </tr>
           </tbody>
@@ -181,8 +269,9 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { useQuasar } from 'quasar'
+import { useQuasar } from 'quasar';
 import { onMounted, ref } from 'vue';
+import { API_URL } from '../constants';
 
 enum Dagdeel {
   Ochtend = 'Ochtend',
@@ -190,26 +279,26 @@ enum Dagdeel {
   Vooravond = 'Vooravond',
   OchtendEnMiddag = 'Ochtend en middag',
   Avond = 'Avond',
-};
+}
 
 const dagdeelOptions = [
   Dagdeel.Ochtend,
   Dagdeel.Middag,
   Dagdeel.Vooravond,
   Dagdeel.Avond,
-  Dagdeel.OchtendEnMiddag
+  Dagdeel.OchtendEnMiddag,
 ];
 
 enum ActiviteitType {
   Tocht = 'Tocht',
   Spel = 'Spel',
-  Vooravond = 'Vooravond programma'
-};
+  Vooravond = 'Vooravond programma',
+}
 
 const typeOptions = [
   ActiviteitType.Tocht,
   ActiviteitType.Spel,
-  ActiviteitType.Vooravond
+  ActiviteitType.Vooravond,
 ];
 
 const $q = useQuasar();
@@ -227,7 +316,7 @@ const showAddTentForm = ref(false);
 const addTentForm = {
   tentnr: ref(''),
   tentchef: ref(''),
-  kampers: ref(''),  
+  kampers: ref(''),
 };
 
 const showAddActiviteitForm = ref(false);
@@ -235,7 +324,7 @@ const addActiviteitForm = {
   naam: ref(''),
   type: ref(ActiviteitType.Tocht),
   dagdeel: ref(Dagdeel.Ochtend),
-  themadag_onderdeel: ref(false)
+  themadag_onderdeel: ref(false),
 };
 
 const openVerwijderTentDialog = (tentnr: number) => {
@@ -272,31 +361,31 @@ const getScore = (tentnr: number) => {
 
 const fetchTenten = async () => {
   await axios
-    .get("http://localhost:8000/tenten/")
-    .then((response) => tenten.value = response.data['tenten'])
+    .get(`${API_URL}/tenten/`)
+    .then((response) => (tenten.value = response.data['tenten']))
     .catch((err) => $q.notify({ message: err.message, type: 'negative' }));
 };
 
 const fetchScores = async () => {
   await axios
-    .get("http://localhost:8000/scores/")
-    .then((response) => scores.value = response.data['scores'])
+    .get(`${API_URL}/scores/`)
+    .then((response) => (scores.value = response.data['scores']))
     .catch((err) => $q.notify({ message: err.message, type: 'negative' }));
-}
+};
 
 const fetchActiviteiten = async () => {
   await axios
-    .get("http://localhost:8000/activiteiten/")
-    .then((response) => activiteiten.value = response.data['activiteiten'])
+    .get(`${API_URL}/activiteiten/`)
+    .then((response) => (activiteiten.value = response.data['activiteiten']))
     .catch((err) => $q.notify({ message: err.message, type: 'negative' }));
 };
 
 const removeTent = async (tentnr: number) => {
   await axios
-    .delete(`http://localhost:8000/tenten/${tentnr}`)
+    .delete(`${API_URL}/tenten/${tentnr}`)
     .then(async (_) => {
       await axios
-        .delete(`http://localhost:8000/scores/${tentnr}`)
+        .delete(`${API_URL}/scores/${tentnr}`)
         .catch((err) => $q.notify({ message: err.message, type: 'negative' }));
 
       $q.notify({ message: 'Tent verwijderd!', type: 'positive' });
@@ -309,7 +398,7 @@ const removeTent = async (tentnr: number) => {
 
 const removeActiviteit = async (activiteit: object) => {
   await axios
-    .delete(`http://localhost:8000/activiteiten/${(activiteit as any).id}`)
+    .delete(`${API_URL}/activiteiten/${(activiteit as any).id}`)
     .then(async (_) => {
       $q.notify({ message: 'Activiteit verwijderd!', type: 'positive' });
       await fetchActiviteiten();
@@ -322,7 +411,7 @@ const removeActiviteit = async (activiteit: object) => {
 const addActiviteit = async () => {
   const themadag = addActiviteitForm.themadag_onderdeel.value ? 1 : 0;
   await axios
-    .post("http://localhost:8000/activiteiten/", {
+    .post(`${API_URL}/activiteiten/`, {
       naam: addActiviteitForm.naam.value,
       type: addActiviteitForm.type.value,
       dagdeel: addActiviteitForm.dagdeel.value,
@@ -345,17 +434,18 @@ const addActiviteit = async () => {
 
 const addTent = async () => {
   await axios
-    .post("http://localhost:8000/tenten/", {
+    .post(`${API_URL}/tenten/`, {
       tentnr: +addTentForm.tentnr.value,
       tentchef: addTentForm.tentchef.value,
-      kampers: addTentForm.kampers.value
+      kampers: addTentForm.kampers.value,
     })
     .then(async (_) => {
       await axios
-        .post("http://localhost:8000/scores/", {
+        .post(`${API_URL}/scores/`, {
           tentnr: +addTentForm.tentnr.value,
-          score: 0
-        }).catch((err) => $q.notify({ message: err.message, type: 'negative' }));
+          score: 0,
+        })
+        .catch((err) => $q.notify({ message: err.message, type: 'negative' }));
 
       $q.notify({ message: 'Tent aangemaakt!', type: 'positive' });
       await fetchTenten();
@@ -366,7 +456,7 @@ const addTent = async () => {
 
   // Reset values
   addTentForm.tentnr.value = '';
-  addTentForm.tentchef.value = '';  
+  addTentForm.tentchef.value = '';
   addTentForm.kampers.value = '';
 };
 
@@ -375,6 +465,4 @@ onMounted(async () => {
   await fetchActiviteiten();
   await fetchScores();
 });
-
-
 </script>

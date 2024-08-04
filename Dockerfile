@@ -8,7 +8,7 @@ COPY ./ ./
 RUN npm install -g npm@9.8.1
 RUN npm install
 RUN npm install -g @vue/cli
-RUN npm install -g @quasar/cli 
+RUN npm install -g @quasar/cli
 RUN quasar build
 
 FROM nginx as production-stage

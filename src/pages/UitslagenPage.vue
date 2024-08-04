@@ -7,37 +7,80 @@
         </q-card-section>
 
         <q-card-section class="q-pt-none">
-          <q-select outlined v-model="addUitslagForm.activiteit.value" :options="activiteitenOptions" label="Activiteit" /><br>
+          <q-select
+            outlined
+            v-model="addUitslagForm.activiteit.value"
+            :options="activiteitenOptions"
+            label="Activiteit"
+          /><br />
 
           <template v-if="addUitslagForm.activiteit.value">
             <q-date
               v-model="addUitslagForm.datum.value"
               mask="DD-MM-YYYY"
               minimal
-            /><br><br>
+            /><br /><br />
 
-            <template v-for="tent in tenten" :key="`uitslag-tent-${tent.tentnr}`">
-              <label>Uitslag {{ addUitslagForm.activiteit }} <b>tent {{ tent.tentnr }}</b></label>
+            <template
+              v-for="tent in tenten"
+              :key="`uitslag-tent-${tent.tentnr}`"
+            >
+              <label
+                >Uitslag {{ addUitslagForm.activiteit }}
+                <b>tent {{ tent.tentnr }}</b></label
+              >
 
               <!-- Ugly... But it works! -->
               <template v-if="tent.tentnr == 1">
-                <q-input outlined label="Snelheid" v-model="addUitslagForm.uitslag_tent_1.snelheid.value" /><br>
-                <q-input outlined label="Punten" v-model="addUitslagForm.uitslag_tent_1.punten.value" /><br>
+                <q-input
+                  outlined
+                  label="Snelheid"
+                  v-model="addUitslagForm.uitslag_tent_1.snelheid.value"
+                /><br />
+                <q-input
+                  outlined
+                  label="Punten"
+                  v-model="addUitslagForm.uitslag_tent_1.punten.value"
+                /><br />
               </template>
 
               <template v-if="tent.tentnr == 2">
-                <q-input outlined label="Snelheid" v-model="addUitslagForm.uitslag_tent_2.snelheid.value" /><br>
-                <q-input outlined label="Punten" v-model="addUitslagForm.uitslag_tent_2.punten.value" /><br>
+                <q-input
+                  outlined
+                  label="Snelheid"
+                  v-model="addUitslagForm.uitslag_tent_2.snelheid.value"
+                /><br />
+                <q-input
+                  outlined
+                  label="Punten"
+                  v-model="addUitslagForm.uitslag_tent_2.punten.value"
+                /><br />
               </template>
 
               <template v-if="tent.tentnr == 3">
-                <q-input outlined label="Snelheid" v-model="addUitslagForm.uitslag_tent_3.snelheid.value" /><br>
-                <q-input outlined label="Punten" v-model="addUitslagForm.uitslag_tent_3.punten.value" /><br>
+                <q-input
+                  outlined
+                  label="Snelheid"
+                  v-model="addUitslagForm.uitslag_tent_3.snelheid.value"
+                /><br />
+                <q-input
+                  outlined
+                  label="Punten"
+                  v-model="addUitslagForm.uitslag_tent_3.punten.value"
+                /><br />
               </template>
 
               <template v-if="tent.tentnr == 4">
-                <q-input outlined label="Snelheid" v-model="addUitslagForm.uitslag_tent_4.snelheid.value" /><br>
-                <q-input outlined label="Punten" v-model="addUitslagForm.uitslag_tent_4.punten.value" /><br>
+                <q-input
+                  outlined
+                  label="Snelheid"
+                  v-model="addUitslagForm.uitslag_tent_4.snelheid.value"
+                /><br />
+                <q-input
+                  outlined
+                  label="Punten"
+                  v-model="addUitslagForm.uitslag_tent_4.punten.value"
+                /><br />
               </template>
             </template>
           </template>
@@ -57,12 +100,24 @@
         </q-card-section>
 
         <q-card-section class="q-pt-none">
-          Weet je zeker dat je uitslag voor <b>"{{ uitslagOmTeVerwijderen }}"</b> wilt verwijderen? Deze actie kan je niet terugdraaien!
+          Weet je zeker dat je uitslag voor
+          <b>"{{ uitslagOmTeVerwijderen }}"</b> wilt verwijderen? Deze actie kan
+          je niet terugdraaien!
         </q-card-section>
 
         <q-card-actions align="right" class="text-primary">
-          <q-btn flat color="grey" label="Annuleren" @click="closeVerwijderUitslagDialog()" v-close-popup />
-          <q-btn flat label="Verwijderen" @click="removeUitslag(uitslagOmTeVerwijderen)" />
+          <q-btn
+            flat
+            color="grey"
+            label="Annuleren"
+            @click="closeVerwijderUitslagDialog()"
+            v-close-popup
+          />
+          <q-btn
+            flat
+            label="Verwijderen"
+            @click="removeUitslag(uitslagOmTeVerwijderen)"
+          />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -70,18 +125,30 @@
     <div class="q-pa-md">
       <div class="sa-column">
         <h4 class="text-bold">
-          <q-icon class="sa-icon-adjusted" name="scoreboard" size="48px"/>
-          Uitslagen <q-btn color="grey" round icon="add" @click="showAddUitslagDialog = true" />
+          <q-icon class="sa-icon-adjusted" name="scoreboard" size="48px" />
+          Uitslagen
+          <q-btn
+            color="grey"
+            round
+            icon="add"
+            @click="showAddUitslagDialog = true"
+          />
         </h4>
 
         <template v-for="(value, key) in uitslagenGrouped" :key="key">
           <div class="text-right sa-delete-uitslag">
-            <q-btn color="primary" outline flat label="Verwijderen" @click="openVerwijderUitslagDialog(keyAsString(key))"/>
+            <q-btn
+              color="primary"
+              outline
+              flat
+              label="Verwijderen"
+              @click="openVerwijderUitslagDialog(keyAsString(key))"
+            />
           </div>
           <q-markup-table class="sa-uitslagen-table">
             <thead>
               <tr>
-                <th class="text-left" style="max-width: 150px;">Activiteit</th>
+                <th class="text-left" style="max-width: 150px">Activiteit</th>
                 <th class="text-right">Tent</th>
                 <th class="text-right">Tentchef</th>
                 <th class="text-right">Snelheid</th>
@@ -90,8 +157,13 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(uitslag, index) in value" :key="`uitslag-${uitslag.id}`">
-                <td class="text-left" style="max-width: 100px;">{{ uitslag.activiteit }}</td>
+              <tr
+                v-for="(uitslag, index) in value"
+                :key="`uitslag-${uitslag.id}`"
+              >
+                <td class="text-left" style="max-width: 100px">
+                  {{ uitslag.activiteit }}
+                </td>
                 <td class="text-right">{{ uitslag.tentnr }}</td>
                 <td class="text-right">{{ uitslag.tentchef }}</td>
                 <td class="text-right">{{ uitslag.snelheid }}</td>
@@ -117,10 +189,11 @@
 import axios from 'axios';
 import { onMounted, ref, Ref } from 'vue';
 import { useQuasar } from 'quasar';
+import { API_URL } from '../constants';
 
 enum UpdateOperator {
   Subtract,
-  Add
+  Add,
 }
 
 const $q = useQuasar();
@@ -138,47 +211,46 @@ const showVerwijderUitslagDialog = ref(false);
 const getCurrDate = () => {
   let today = new Date();
   let date = today.toJSON().slice(0, 10);
-  let nDate = date.slice(8, 10) + '-'
-    + date.slice(5, 7) + '-'
-    + date.slice(0, 4);
- 
+  let nDate =
+    date.slice(8, 10) + '-' + date.slice(5, 7) + '-' + date.slice(0, 4);
+
   return nDate;
-}
+};
 
 const addUitslagForm = {
   activiteit: ref(''),
   datum: ref(getCurrDate()),
   uitslag_tent_1: {
     snelheid: ref('n.v.t.'),
-    punten: ref(0)
+    punten: ref(0),
   },
   uitslag_tent_2: {
     snelheid: ref('n.v.t.'),
-    punten: ref(0)
+    punten: ref(0),
   },
   uitslag_tent_3: {
     snelheid: ref('n.v.t.'),
-    punten: ref(0)
+    punten: ref(0),
   },
   uitslag_tent_4: {
     snelheid: ref('n.v.t.'),
-    punten: ref(0)
-  }
-}
+    punten: ref(0),
+  },
+};
 
 const keyAsString = (key: unknown) => {
   return key as string;
-}
+};
 
 const openVerwijderUitslagDialog = (activiteit: string) => {
   uitslagOmTeVerwijderen.value = activiteit;
   showVerwijderUitslagDialog.value = true;
-}
+};
 
 const closeVerwijderUitslagDialog = () => {
   uitslagOmTeVerwijderen.value = '';
   showVerwijderUitslagDialog.value = false;
-}
+};
 
 const removeUitslag = async (activiteitNaam: string) => {
   let failed = false;
@@ -186,9 +258,13 @@ const removeUitslag = async (activiteitNaam: string) => {
   uitslagen.value.forEach(async (uitslag: any) => {
     if (uitslag.activiteit == activiteitNaam) {
       await axios
-        .delete(`http://localhost:8000/uitslagen/${uitslag.tentnr}/${uitslag.activiteit}`)
+        .delete(`${API_URL}/uitslagen/${uitslag.tentnr}/${uitslag.activiteit}`)
         .then(async (_) => {
-          await updateScore(uitslag.tentnr, uitslag.punten, UpdateOperator.Subtract)
+          await updateScore(
+            uitslag.tentnr,
+            uitslag.punten,
+            UpdateOperator.Subtract
+          );
         })
         .catch((err) => {
           $q.notify({ message: err, type: 'negative' });
@@ -203,7 +279,7 @@ const removeUitslag = async (activiteitNaam: string) => {
 
     setTimeout(async () => {
       await refetchUitslagen();
-    }, 200)
+    }, 200);
   }
 };
 
@@ -243,29 +319,28 @@ const addUitslag = async () => {
     };
 
     await axios
-      .post("http://localhost:8000/uitslagen/", uitslag)
+      .post(`${API_URL}/uitslagen/`, uitslag)
       .then(async (_) => {
-        await updateScore(tent.tentnr, punten)
+        await updateScore(tent.tentnr, punten);
       })
       .catch((err) => {
         $q.notify({ message: err, type: 'negative' });
         failed = true;
       });
-  })
+  });
 
-  if (!failed)
-    $q.notify({ message: 'Uitslag toegevoegd!', type: 'positive' });
-    showAddUitslagDialog.value = false;
+  if (!failed) $q.notify({ message: 'Uitslag toegevoegd!', type: 'positive' });
+  showAddUitslagDialog.value = false;
 
-    setTimeout(async () => {
-      await refetchUitslagen();
-    }, 200)
-}
+  setTimeout(async () => {
+    await refetchUitslagen();
+  }, 200);
+};
 
 const fetchUitslagen = async () => {
   axios
-    .get('http://localhost:8000/uitslagen/')
-    .then((response) => uitslagen.value = response.data['uitslagen'])
+    .get(`${API_URL}/uitslagen/`)
+    .then((response) => (uitslagen.value = response.data['uitslagen']))
     .catch((err) => $q.notify({ message: err.message, type: 'negative' }));
 };
 
@@ -277,16 +352,18 @@ const groupUitslagenByActiviteit = () => {
       activiteitenOptions.value.forEach((activiteit: string) => {
         if (activiteit == uitslag.activiteit) {
           if (!grouped[activiteit]) {
-            grouped[activiteit] = []
+            grouped[activiteit] = [];
           }
           grouped[activiteit].push(uitslag);
         }
       });
 
       if (grouped[uitslag.activiteit]) {
-        grouped[uitslag.activiteit].sort((a: any, b: any) => a.punten - b.punten).reverse();
+        grouped[uitslag.activiteit]
+          .sort((a: any, b: any) => a.punten - b.punten)
+          .reverse();
       }
-    })
+    });
 
     uitslagenGrouped.value = grouped;
   }, 200);
@@ -294,8 +371,8 @@ const groupUitslagenByActiviteit = () => {
 
 const refetchUitslagen = async () => {
   axios
-    .get('http://localhost:8000/uitslagen/')
-    .then((response) => uitslagen.value = response.data['uitslagen'])
+    .get(`${API_URL}/uitslagen/`)
+    .then((response) => (uitslagen.value = response.data['uitslagen']))
     .catch((err) => $q.notify({ message: err.message, type: 'negative' }));
 
   groupUitslagenByActiviteit();
@@ -303,15 +380,15 @@ const refetchUitslagen = async () => {
 
 const fetchActiviteiten = async () => {
   axios
-    .get('http://localhost:8000/activiteiten/')
-    .then((response) => activiteiten.value = response.data['activiteiten'])
+    .get(`${API_URL}/activiteiten/`)
+    .then((response) => (activiteiten.value = response.data['activiteiten']))
     .catch((err) => $q.notify({ message: err.message, type: 'negative' }));
 };
 
 const fetchTenten = async () => {
   axios
-    .get('http://localhost:8000/tenten/')
-    .then((response) => tenten.value = response.data['tenten'])
+    .get(`${API_URL}/tenten/`)
+    .then((response) => (tenten.value = response.data['tenten']))
     .catch((err) => $q.notify({ message: err.message, type: 'negative' }));
 };
 
@@ -321,7 +398,7 @@ const updateScore = async (
   operator: UpdateOperator = UpdateOperator.Add
 ) => {
   await axios
-    .get(`http://localhost:8000/scores/${tentnr}`)
+    .get(`${API_URL}/scores/${tentnr}`)
     .then(async (response) => {
       let score = response.data['scores'];
       let newScore = 0;
@@ -331,9 +408,9 @@ const updateScore = async (
       } else if (operator == UpdateOperator.Subtract) {
         newScore = +score.score - +punten;
       }
- 
+
       await axios
-        .put(`http://localhost:8000/scores/${tentnr}?score=${newScore}`)
+        .put(`${API_URL}/scores/${tentnr}?score=${newScore}`)
         .catch((err) => $q.notify({ message: err.message, type: 'negative' }));
     })
     .catch((err) => $q.notify({ message: err.message, type: 'negative' }));
@@ -361,6 +438,4 @@ onMounted(async () => {
 
   groupUitslagenByActiviteit();
 });
-
 </script>
-  

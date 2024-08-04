@@ -18,7 +18,10 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(score, index) in scores" :key="`score-${score.tentnr}`">
+              <tr
+                v-for="(score, index) in scores"
+                :key="`score-${score.tentnr}`"
+              >
                 <td class="text-left">{{ score.tentnr }}</td>
                 <td class="text-left">{{ fetchTentchef(score.tentnr) }}</td>
                 <td class="text-left">{{ fetchKampers(score.tentnr) }}</td>
@@ -38,6 +41,7 @@
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
 import { useQuasar } from 'quasar';
+import { API_URL } from '../constants';
 
 const $q = useQuasar();
 const tenten = ref();
@@ -67,17 +71,17 @@ const fetchKampers = (tentnr: number) => {
 
 const fetchTenten = async () => {
   await axios
-    .get("http://localhost:8000/tenten/")
-    .then((response) => tenten.value = response.data['tenten'])
+    .get(`${API_URL}/tenten/`)
+    .then((response) => (tenten.value = response.data['tenten']))
     .catch((err) => $q.notify({ message: err.message, type: 'negative' }));
 };
 
 const fetchScores = async () => {
   await axios
-    .get("http://localhost:8000/scores/")
-    .then((response) => scores.value = response.data['scores'])
+    .get(`${API_URL}/scores/`)
+    .then((response) => (scores.value = response.data['scores']))
     .catch((err) => $q.notify({ message: err.message, type: 'negative' }));
-}
+};
 
 onMounted(async () => {
   await fetchScores();
@@ -86,6 +90,6 @@ onMounted(async () => {
   setInterval(async () => {
     await fetchScores();
     await fetchTenten();
-  }, 100000)
+  }, 100000);
 });
 </script>
